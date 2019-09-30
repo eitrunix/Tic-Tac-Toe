@@ -3,21 +3,20 @@
 
 using namespace std;
 
-
-Game::Game() :
-	m_Current(FIRST)
+// Sets up a game, with the first player ready.
+Game::Game() : m_Current(FIRST)
 {}
-
+// The game runs while these are not true
 bool Game::IsPlaying() const
 {
 	return (!m_Board.IsFull() && !m_Board.IsWinner(m_Players[FIRST].GetPiece()) && !m_Board.IsWinner(m_Players[SECOND].GetPiece()));
 }
-
+// Game ties if the board is full but there is no winning combos to trigger the win condition
 bool Game::IsTie() const
 {
 	return (m_Board.IsFull() && !m_Board.IsWinner(m_Players[FIRST].GetPiece()) && !m_Board.IsWinner(m_Players[SECOND].GetPiece()));
 }
-
+// Tell the player how to play
 void Game::DisplayInstructions() const
 {
 	cout << "\tWelcome to the ultimate intellectual";
@@ -36,22 +35,23 @@ void Game::DisplayInstructions() const
 	cout << "Perpare yourself. THe battle is about to begin.";
 	cout << endl << endl;
 }
-
+// to change first and second player 
 void Game::NextPlayer()
 {
 	m_Current = (m_Current + 1) % NUM_PLAYERS;
 }
-
+// Announce the winner or if its a tie
 void Game::AnnounceWinner() const
 {
 	cout << "The raging battle has come to a final end.";
 	cout << endl;
+	//if tie.
 	if (IsTie())
 	{
 		cout << "Sadly, no plater emerged victorious.";
 		cout << endl;
 	}
-	else
+	else //else announce winner
 	{
 		cout << "The winnder of this climatic";
 		cout << "confrontation is Player ";
@@ -68,7 +68,7 @@ void Game::AnnounceWinner() const
 		}
 	}
 }
-
+// The "game" Sets First player, resets the board incase we played before, while it is "playing" Display the board, tell the player to make a move, then swap players.
 void Game::Play()
 {
 	m_Current = FIRST;
@@ -80,6 +80,7 @@ void Game::Play()
 		m_Players[m_Current].MakeMove(m_Board);
 		NextPlayer();
 	}
+	// Display the filled board and announce winner.
 	m_Board.Display();
 	AnnounceWinner();
 }
