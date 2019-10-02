@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void PlayerComputer::MakeMove(Board& Board) const
+PlayerComputer::MakeMove(Board& Board) const
 {
 	int move = 0;
 	bool found = false;
@@ -14,7 +14,7 @@ void PlayerComputer::MakeMove(Board& Board) const
 		if (Board.IsLegalMove(move))
 		{
 			//try move
-			Board.ReceieveMove(GetPiece(), move);
+			Board.RecieveMove(GetPiece(), move);
 			//Test for Winner
 			found = Board.IsWinner(GetPiece());
 			//undo move
@@ -35,7 +35,7 @@ void PlayerComputer::MakeMove(Board& Board) const
 		{
 			if (Board.IsLegalMove(move)) 
 			{
-				Board.RevieveMove(GetOpponentPiece(), move);
+				Board.RecieveMove(GetOpponentPiece(), move);
 				found = Board.IsWinner(GetOpponentPiece());
 				Board.RecieveMove(Board.EMPTY, move);
 			}

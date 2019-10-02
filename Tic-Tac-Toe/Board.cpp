@@ -84,7 +84,7 @@ void Board::Reset()
 	}
 }
 // used for placing the pieces.
-void Board::ReceiveMove(char piece, int move)
+void Board::RecieveMove(char piece, int move)
 {
 	m_Squares[move] = piece;
 }

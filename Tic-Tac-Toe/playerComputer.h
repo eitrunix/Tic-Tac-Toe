@@ -8,8 +8,8 @@ class Board;
 class PlayerComputer : public Player
 {
 public:
-	//Calculates and makes a move
-	virtual void MakeMove(Board& Board) const;
+	
+	virtual void MakeMove(Board& Board) const;  //Calculates and makes a move
 
 };
 

@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 const char Player::PIECES[NUM_PIECES] = { 'X', 'O' };   // What the pieces are, we can change these to anything to make a silly game
 
 int Player::current = 0;								// Current player, initialized at 0.
@@ -40,7 +41,7 @@ void Player::MakeMove(Board& Board) const
 		cin >> move;
 	} while (!Board.IsLegalMove(move));
 
-	Board.ReceiveMove(GetPiece(), move);
+	Board.RecieveMove(GetPiece(), move);
 }
 
 

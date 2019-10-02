@@ -12,7 +12,7 @@ public:
 	bool IsWinner(char piece) const;		//Check for a winner 
 	void Display() const;					// Print the board
 	void Reset();							// Reset the board
-	void ReceiveMove(char piece, int move);	// Takes in player input to place a piece
+	void RecieveMove(char piece, int move);	// Takes in player input to place a piece
 
 	static const int NUM_SQUARES = 9;		// Number of spaces in the game
 	static const char EMPTY = ' ';			// If the space is empty, print out an empy space

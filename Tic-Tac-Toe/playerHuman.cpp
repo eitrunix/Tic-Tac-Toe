@@ -3,7 +3,7 @@
 #inclide <iostream>
 using namespace std;
 
-void PlayerHuman::MakeMove(Board& Board) const
+PlayerHuman::MakeMove(Board& Board) const
 {
 	int move;
 
@@ -13,7 +13,7 @@ void PlayerHuman::MakeMove(Board& Board) const
 		cout << ", Where would you like to move? (0-8): ";
 		cin >> move;
 
-	} while (!aBoard.IsLegalMove(move));
+	} while (!Board.IsLegalMove(move));
 	Board.RecieveMove(GetPiece(), move);
 }
 
