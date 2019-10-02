@@ -1,9 +1,9 @@
 #include "playerHuman.h"
-#inclide "Board.h"
-#inclide <iostream>
+#include "Board.h"
+#include <iostream>
 using namespace std;
 
-PlayerHuman::MakeMove(Board& Board) const
+void PlayerHuman::MakeMove(Board& Board) const
 {
 	int move;
 

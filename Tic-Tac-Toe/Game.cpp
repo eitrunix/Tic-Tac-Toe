@@ -131,7 +131,6 @@ void Game::Play()
 {
 	m_Current = FIRST;
 	m_Board.Reset();
-
 	while (IsPlaying())
 	{
 		m_Board.Display();

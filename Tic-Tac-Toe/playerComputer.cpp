@@ -4,7 +4,7 @@
 
 using namespace std;
 
-PlayerComputer::MakeMove(Board& Board) const
+void PlayerComputer::MakeMove(Board& Board) const
 {
 	int move = 0;
 	bool found = false;
@@ -67,5 +67,5 @@ PlayerComputer::MakeMove(Board& Board) const
 	std::cout << ", shall take the square number ";
 	std::cout << move << "." << endl;
 
-	Board.RecieveMove(GetPiece(), move)
+	Board.RecieveMove(GetPiece(), move);
 }
