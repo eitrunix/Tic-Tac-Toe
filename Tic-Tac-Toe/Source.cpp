@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <iostream>
 
-
+using namespace std;
 
 int main()
 {
@@ -11,6 +11,7 @@ int main()
 	char again;				// Ask to play again
 	do
 	{
+		ticTacToe.SetPlayers();
 		ticTacToe.Play();
 		std::cout << std::endl << "Play again? (y/n): ";
 		std::cin >> again;

@@ -1,21 +1,79 @@
 #include "Game.h"
+#include "playerComputer.h"
+#include "playerHuman.h"
 #include <iostream>
 
 using namespace std;
-
 // Sets up a game, with the first player ready.
-Game::Game() : m_Current(FIRST)
-{}
+
+class Player;
+
+//constructor for the game, sets current to first, and sets number of players to NULL
+Game::Game() :
+	m_Current(FIRST)
+{
+	for (int i = 0; i < NUM_PLAYERS; ++i)
+	{
+		m_pPlayers[i] = NULL;
+	}
+}
+//
+Game::~Game()
+{
+	ClearPlayers();
+}
+
+
 // The game runs while these are not true
 bool Game::IsPlaying() const
 {
-	return (!m_Board.IsFull() && !m_Board.IsWinner(m_Players[FIRST].GetPiece()) && !m_Board.IsWinner(m_Players[SECOND].GetPiece()));
+	return (!m_Board.IsFull() && !m_Board.IsWinner(m_pPlayers[FIRST]->GetPiece()) && !m_Board.IsWinner(m_pPlayers[SECOND]->GetPiece()));
 }
 // Game ties if the board is full but there is no winning combos to trigger the win condition
 bool Game::IsTie() const
 {
-	return (m_Board.IsFull() && !m_Board.IsWinner(m_Players[FIRST].GetPiece()) && !m_Board.IsWinner(m_Players[SECOND].GetPiece()));
+	return (m_Board.IsFull() && !m_Board.IsWinner(m_pPlayers[FIRST]->GetPiece()) && !m_Board.IsWinner(m_pPlayers[SECOND]->GetPiece()));
 }
+void Game::ClearPlayers()
+{
+	for (int i = 0; i < NUM_PLAYERS; i++)
+	{
+		delete m_pPlayers[i];
+		m_pPlayers[i] = NULL;
+	}
+}
+
+void Game::SetPlayers()
+{
+	ClearPlayers();
+
+	cout << "Who shall wage this epic fight? ";
+	cout << "Declare opponents..." << endl;
+
+	for (int i = 0; i < NUM_PLAYERS; ++i)
+	{
+		cout << "Player " << i + 1;
+		cout << " - human or computer? (h/c): ";
+		char playerType;
+		cin >> playerType;
+
+		if (playerType == 'h')
+		{
+			m_pPlayers[i] = new PlayerHuman();
+		}
+		else if (playerType == 'c')
+		{
+			m_pPlayers[i] = new PlayerComputer();
+		}
+		else
+		{
+			cout << "Please enter 'h' or 'c' to identify player types!" << endl;
+			SetPlayers();
+			return;
+		}
+	}
+}
+
 // Tell the player how to play
 void Game::DisplayInstructions() const
 {
@@ -56,19 +114,19 @@ void Game::AnnounceWinner() const
 		cout << "The winnder of this climatic";
 		cout << "confrontation is Player ";
 
-		if (m_Board.IsWinner(m_Players[FIRST].GetPiece()))
+		if (m_Board.IsWinner(m_pPlayers[FIRST]->GetPiece()))
 		{
-			cout << m_Players[FIRST].GetPiece() << "!";
+			cout << m_pPlayers[FIRST]->GetPiece() << "!";
 			cout << endl;
 		}
 		else
 		{
-			cout << m_Players[SECOND].GetPiece() << "!";
+			cout << m_pPlayers[SECOND]->GetPiece() << "!";
 			cout << endl;
 		}
 	}
 }
-// The "game" Sets First player, resets the board incase we played before, while it is "playing" Display the board, tell the player to make a move, then swap players.
+// We Sets First player, resets the board incase we played before, while it is "playing" Display the board, tell the player to make a move, then swap players.
 void Game::Play()
 {
 	m_Current = FIRST;
@@ -77,7 +135,7 @@ void Game::Play()
 	while (IsPlaying())
 	{
 		m_Board.Display();
-		m_Players[m_Current].MakeMove(m_Board);
+		m_pPlayers[m_Current]->MakeMove(m_Board);
 		NextPlayer();
 	}
 	// Display the filled board and announce winner.
