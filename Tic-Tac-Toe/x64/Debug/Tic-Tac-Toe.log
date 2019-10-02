@@ -1,0 +1,8 @@
+﻿  Board.cpp
+  Game.cpp
+  Player.cpp
+  Source.cpp
+  Generating Code...
+Game.obj : error LNK2001: unresolved external symbol "public: virtual void __cdecl PlayerComputer::MakeMove(class Board &)const " (?MakeMove@PlayerComputer@@UEBAXAEAVBoard@@@Z)
+Game.obj : error LNK2001: unresolved external symbol "public: virtual void __cdecl PlayerHuman::MakeMove(class Board &)const " (?MakeMove@PlayerHuman@@UEBAXAEAVBoard@@@Z)
+C:\Users\jeffo\Desktop\HTML Games\Tic-Tac-Toe\Tic-Tac-Toe\x64\Debug\Tic-Tac-Toe.exe : fatal error LNK1120: 2 unresolved externals

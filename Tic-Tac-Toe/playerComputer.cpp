@@ -29,7 +29,7 @@ void PlayerComputer::MakeMove(Board& Board) const
 
 	if (!found)
 	{
-		move - 0;
+		move = 0;
 
 		while (!found && move < Board.NUM_SQUARES)
 		{
@@ -54,7 +54,7 @@ void PlayerComputer::MakeMove(Board& Board) const
 		const int BEST_MOVES[] = { 4, 0, 2, 6, 8, 1, 3, 5, 7 };
 		while(!found && i < Board.NUM_SQUARES)
 		{
-			move - BEST_MOVES[i];
+			move = BEST_MOVES[i];
 			if (Board.IsLegalMove(move))
 			{
 				found = true;
