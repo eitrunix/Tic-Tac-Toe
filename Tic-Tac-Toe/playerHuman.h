@@ -10,6 +10,6 @@ class PlayerHuman : public Player
 {
 
 public:
-	virtual void MakeMove(Board& Board) const;
+	void MakeMove(Board& Board) const;
 };
 #endif

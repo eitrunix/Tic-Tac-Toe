@@ -9,7 +9,7 @@ class PlayerComputer : public Player
 {
 public:
 	//Calculates and makes a move
-	virtual void MakeMove(Board& Board) const;
+	void MakeMove(Board& Board) const;
 
 };
 
